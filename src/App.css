@@ -40,3 +40,55 @@
 .read-the-docs {
   color: #888;
 }
+
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  margin: auto;
+  position: relative;
+}
+
+.mini-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  margin: 50px;
+}
+
+#wrong {
+  color: rgb(75, 28, 28);
+}
+
+#correct {
+  color: #1c4118;
+}
+
+li {
+  list-style: none;
+}
+
+.answer-space {
+  display: flex;
+  width: 100px;
+  height: 50px;
+  padding: 10px;
+  margin-bottom: 20px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 20px 0 rgba(216, 152, 33, 0.281);
+  background-color: #5e4b32;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: larger;
+}
+
+.wrong-field {
+  background-color: #974040;
+  box-shadow: 0 0 20px 0 #974040;
+}
+
+.correct-field {
+  background-color: #4b975e;
+  box-shadow: 0 0 20px 0 #4b975e;
+}

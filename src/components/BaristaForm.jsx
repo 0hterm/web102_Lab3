@@ -14,6 +14,11 @@ const BaristaForm = () => {
     const [currentDrink, setCurrentDrink] = useState('');
     const [trueRecipe, setTrueRecipe] = useState({});
 
+    const [correctTemperature, setCorrectTemperature] = useState('');
+    const [correctMilk, setCorrectMilk] = useState('');
+    const [correctSyrup, setCorrectSyrup] = useState('');
+    const [correctBlended, setCorrectBlended] = useState('');
+
     const ingredients = {
         'temperature': ['hot', 'lukewarm', 'cold'],
         'syrup': ['mocha', 'vanilla', 'caramel', 'toffee', 'maple', 'other', 'none'],
@@ -28,6 +33,10 @@ const BaristaForm = () => {
     }    
 
     const onNewDrink = () => {
+        setCorrectBlended('');
+        setCorrectMilk('');
+        setCorrectSyrup('');
+        setCorrectTemperature('');
         setInputs({
             'temperature': '',
             'milk': '',
@@ -38,7 +47,29 @@ const BaristaForm = () => {
     }
 
     const onCheckAnswer = () => {
+        if (trueRecipe.temp === inputs.temperature) {
+            setCorrectTemperature('correct');
+        } else {
+            setCorrectTemperature('wrong');
+        }
 
+        if (trueRecipe.syrup === inputs.syrup) {
+            setCorrectSyrup('correct');
+        } else {
+            setCorrectSyrup('wrong');
+        }
+
+        if (trueRecipe.milk === inputs.milk) {
+            setCorrectMilk('correct');
+        } else {
+            setCorrectMilk('wrong');
+        }
+
+        if (trueRecipe.blended === inputs.blended) {
+            setCorrectBlended('correct');
+        } else {
+            setCorrectBlended('wrong');
+        }
     }
   
   return (
@@ -53,22 +84,27 @@ const BaristaForm = () => {
                 🔄
             </button>
         </div>
-        <form>
+        <form className="container">
+        <div className="mini-container">
             <h3>Temperature</h3>
-            <div className='answer-space'>
-                {inputs['temperature']}
+            <div className={"answer-space " + correctTemperature + '-field'} id={correctTemperature}>
+                {inputs["temperature"]}
             </div>
-            <RecipeChoices 
-                handleChange={(e) => setInputs((prevState) => ({
+            <RecipeChoices
+                handleChange={(e) =>
+                setInputs((prevState) => ({
                     ...prevState,
-                    [e.target.name]: e.target.value
-                }))}
-                label='temperature' 
-                choices={ingredients['temperature']} 
-                checked={inputs['temperature']}
+                    [e.target.name]: e.target.value,
+                }))
+                }
+                label="temperature"
+                choices={ingredients["temperature"]}
+                currentVal={inputs["temperature"]}
             />
+        </div>
+        <div className="mini-container">
             <h3>Milk</h3>
-            <div className='answer-space'>
+            <div className={'answer-space ' + correctMilk + '-field'} id={correctMilk}>
                 {inputs['milk']}
             </div>
             <RecipeChoices 
@@ -80,8 +116,10 @@ const BaristaForm = () => {
                 choices={ingredients['milk']} 
                 checked={inputs['milk']}
             />
+        </div>
+        <div className="mini-container">
             <h3>Syrup</h3>
-            <div className='answer-space'>
+            <div className={'answer-space ' + correctSyrup + '-field'} id={correctSyrup}>
                 {inputs['syrup']}
             </div>
             <RecipeChoices 
@@ -93,8 +131,10 @@ const BaristaForm = () => {
                 choices={ingredients['syrup']} 
                 checked={inputs['syrup']}
             />
+        </div>
+        <div className="mini-container">
             <h3>Blended</h3>
-            <div className='answer-space'>
+            <div className={'answer-space ' + correctBlended + '-field'} id={correctBlended}>
                 {inputs['blended']}
             </div>
             <RecipeChoices 
@@ -106,6 +146,7 @@ const BaristaForm = () => {
                 choices={ingredients['blended']} 
                 checked={inputs['blended']}
             />
+        </div>
         </form>
         <button type='submit' className="button submit" onClick={onCheckAnswer}>
             Check Answer
