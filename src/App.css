@@ -71,10 +71,10 @@
 
 li {
   list-style: none;
-  border: solid 1px #8b6f4abd;
   border-radius: 30px;
   width: 100px;
   margin-bottom: 5px;
+  box-shadow: 0 0 3px 0 #928068;
 }
 
 .answer-space {
@@ -85,7 +85,7 @@ li {
   margin-bottom: 20px;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 0 20px 0 rgba(216, 152, 33, 0.281);
+  box-shadow: 0 0 5px 0 rgba(216, 152, 33, 0.158);
   background-color: #5e4b32;
   border-radius: 20px;
   font-weight: 700;
